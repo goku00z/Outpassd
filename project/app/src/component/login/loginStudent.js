@@ -22,10 +22,6 @@ class LoginStudent extends Component{
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    componentDidMount(){
-        this.props.setUser();
-    }
-
     onChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }

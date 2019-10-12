@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import {Link} from 'react-router-dom';
 import "./loginStudent.css";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
+import {loginWarden} from "../../actions/index";
 
 const style = {
     padding: 20,
@@ -8,6 +11,32 @@ const style = {
   }
 
 class LoginWarden extends Component{
+    constructor() {
+        super();
+        this.state = {
+            UserName: "",
+            Pass: ""
+        };
+
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        const user = {
+            email: this.state.UserName,
+            password: this.state.Pass
+        };
+
+        console.log(user);
+        this.props.loginWarden(user, this.props.history);
+    }
     render(){
         return (
             <div>
@@ -17,13 +46,15 @@ class LoginWarden extends Component{
                     </div>
                     <div className="row">
                         <h2 className="center" id="login">login</h2>
-                        <form>
+                        <form onSubmit={this.onSubmit}>
                             <label>UserName</label>
-                            <input type="text" placeholder="UserName" className="usercss" id="inputBox"/>
+                            <input type="text" placeholder="UserName" className="usercss" name="UserName" id="inputBox" onChange={this.onChange}
+                                                value={this.state.UserName}/>
                             <label>Password</label>
-                            <input type="password" placeholder="Password" id="inputBox"/>
+                            <input type="password" placeholder="Password" id="inputBox" name="Pass" onChange={this.onChange}
+                                                value={this.state.Pass}/>
                             <div>
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Done</button>
+                            <input class="btn waves-effect waves-light" type="submit" name="action" value="Done" />
                             </div>
                         </form>
                     </div>
@@ -33,4 +64,4 @@ class LoginWarden extends Component{
     }
 }
 
-export default LoginWarden;
+export default connect(null, {loginWarden})(LoginWarden);

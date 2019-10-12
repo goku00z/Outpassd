@@ -63,6 +63,20 @@ export const getLogs = (user) => async dispatch => {
     })
 } 
 
+export const getAllLogs = () => async dispatch => {
+    var array = [];
+    todosRef.collection("Log").get().then(res => {
+        res.forEach(log => {
+            array.push(log.data());
+        })
+        console.log(array);
+        dispatch({
+            type: "FETCH_ALLLOG",
+            payload: array
+        })
+    })
+} 
+
 export const setUser = () => async dispatch => {
     try{
         const id = localStorage.getItem("userId");
@@ -117,4 +131,41 @@ export const loginStudent = (user, history) => async dispatch => {
     
 
 
+}
+
+
+// Warden
+export const loginWarden = (warden, history) => async dispatch => {
+    const user = {
+        email: "warden@iiita.ac.in"
+    }
+    firebase.auth().signInWithEmailAndPassword(warden.email,warden.password).then(function(res){
+        if(res){
+            localStorage.setItem("userId", res.user.uid);
+            dispatch({
+                type: "FETCH_WARDEN",
+                payload: user
+            })
+             history.push("/dashboardWarden");
+        }
+        // $scope.busy = false;
+    }).catch(function(err){
+        
+            console.log(err);
+
+    })
+}
+
+export const getDisApprove = () => async dispatch => {
+    var array = [];
+    todosRef.collection("Log").where("StatusByParent", "==", "Pending").get().then(res => {
+        res.forEach(log => {
+            array.push(log.data());
+        })
+        console.log(array);
+        dispatch({
+            type: "FETCH_DISAPPROVE",
+            payload: array
+        })
+    })
 }
