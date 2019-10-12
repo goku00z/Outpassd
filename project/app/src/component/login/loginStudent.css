@@ -5,3 +5,34 @@
 .usercss{
     background-color: grey;
 }
+
+.col.s12 > .btn {
+    width: 100%;
+ }
+
+ .btn
+ {
+     background-color: #E44B80;
+     width:100%;
+     margin-top: 20px;
+ }
+
+
+  #inputBox
+  {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #E9E9E9;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #878686;
+    background-color:#E9E9E9;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  #login
+  {
+    font-family: 'Poppins', sans-serif;
+  }

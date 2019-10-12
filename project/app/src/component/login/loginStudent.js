@@ -15,11 +15,11 @@ class LoginStudent extends Component{
                         <h2 className="center">login</h2>
                         <form>
                             <label>UserName</label>
-                            <input type="text" placeholder="UserName" className="usercss" />
+                            <input type="text" placeholder="UserName" className="usercss" id="inputBox"/>
                             <label>Password</label>
-                            <input type="password" placeholder="Password" />
+                            <input type="password" placeholder="Password" id="inputBox"/>
                             <div>
-                                <Link to="/dashboard">Done</Link>
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                             </div>
                         </form>
                     </div>
