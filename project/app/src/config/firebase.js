@@ -1,7 +1,11 @@
 import * as firebase from "firebase";
 
-import { FirebaseConfig } from "../config/keys";
-firebase.initializeApp(FirebaseConfig);
+import "firebase/auth";
+
+import { firebaseConfig } from "../config/keys";
+var app = firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore(app);
 
 const databaseRef = firebase.database().ref();
-export const todosRef = databaseRef.child("todos");
+export default db;

@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import UserHistory from "./UserHistory";
+import {connect} from "react-redux";
+import {withRouter} from "react-router-dom";
+import {sendLogs} from "../actions/index";
 
 const style = {
     padding: 20,
@@ -8,16 +11,51 @@ const style = {
   }
 
 class Dashboard extends Component{
+    constructor() {
+        super();
+        this.state = {
+            Date: "",
+            Time: "",
+            Place: "",
+            Method: ""
+        };
+
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    onSubmit(e) {
+        e.preventDefault();
+
+        const plan = {
+            Date: this.state.Date,
+            Time: this.state.Time,
+            Place: this.state.Place,
+            Method: this.state.Method,
+            Enrollment: this.props.user.Enrollment,
+            Reason: "",
+            StatusByParent: "Pending",
+            StatusByWarden: "Pending"
+        };
+
+        console.log(plan);
+        this.props.sendLogs(plan, this.props.history);
+    }
     render(){
+        const user = this.props.user;
     return(
         <div className="container">
             <div className="row center">
                     <img src="/images/outpassdlogo-03.png" style={style}/>
                     </div>
             <div className="row">
-                <div className="left">Muskan</div>
+                <div className="left">{user.Name}</div>
                 <br/>
-                <div className="left">IEC2017045</div>
+                <div className="left">{user.Enrollment}</div>
                 <div className="right">logout</div>
             </div>
             <div className="row">
@@ -25,23 +63,27 @@ class Dashboard extends Component{
             </div>
             <div className="row">
                 <h2 className="center">plan</h2>
-                <form>
+                <form onSubmit={this.onSubmit}>
                     <label>Date of visit</label>
-                    <input type="text" placeholder="Date" />
+                    <input type="text" placeholder="Date" name="Date" onChange={this.onChange} value={this.state.Date} />
                     <label>Time to leave</label>
-                    <input type="text" placeholder="Time" />
+                    <input type="text" placeholder="Time" name="Time" onChange={this.onChange} value={this.state.Time}/>
                     <label>Proceeding to</label>
-                    <input type="text" placeholder="Place" />
+                    <input type="text" placeholder="Place" name="Place" onChange={this.onChange} value={this.state.Place} />
                     <label>Conveyence</label>
-                    <input type="text" placeholder="" />
+                    <input type="text" placeholder="" name="Method" onChange={this.onChange} value={this.state.Method} />
                     
                     <div>
-                        <Link to="/dashboard" className="btn">Send</Link>
-                    </div>
+                            <input class="btn waves-effect waves-light white-text" type="submit" name="action" value="Send" />
+                            </div>
                 </form>
             </div>
         </div>
     )}
 };
 
-export default Dashboard;
+const mapStateToProps = state => ({
+    user: state.user
+})
+
+export default connect(mapStateToProps, {sendLogs})(withRouter(Dashboard));
