@@ -1,12 +1,18 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import UserHistory from "./UserHistory";
+import "./login/loginStudent.css";
 
 const style = {
     padding: 20,
     width: 300
   }
 
+  const style1 = 
+{
+    color:"black",
+    font: "Poppins",
+} 
 class Dashboard extends Component{
     render(){
     return(
@@ -20,20 +26,21 @@ class Dashboard extends Component{
                 <div className="left">IEC2017045</div>
                 <div className="right">logout</div>
             </div>
+            <hr className="colorPink"></hr>
             <div className="row">
-                <div className="col s12 center"><Link to="/userLogs" className="btn links" >History</Link></div>
+                <div className="col s12 center btn white black-text"><Link style={style1} to="/userLogs">History</Link></div>
             </div>
-            <div className="row">
-                <h2 className="center">plan</h2>
+            <div className="row z-depth-2 cardBox" >
+                <h2 className="center" style={style1}>plan</h2>
                 <form>
-                    <label>Date of visit</label>
-                    <input type="text" placeholder="Date" />
-                    <label>Time to leave</label>
-                    <input type="text" placeholder="Time" />
-                    <label>Proceeding to</label>
-                    <input type="text" placeholder="Place" />
-                    <label>Conveyence</label>
-                    <input type="text" placeholder="" />
+                    <label className="black-text">Date of visit</label>
+                    <input type="text" placeholder="" id="inputBox" />
+                    <label className="black-text">Time to leave</label>
+                    <input type="text" placeholder="" id="inputBox"/>
+                    <label className="black-text">Proceeding to</label>
+                    <input type="text" placeholder="" id="inputBox"/>
+                    <label className="black-text">Conveyence</label>
+                    <input type="text" placeholder="" id="inputBox"/>
                     
                     <div>
                         <Link to="/dashboard" className="btn">Send</Link>

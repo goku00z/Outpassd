@@ -45,3 +45,34 @@
     text-decoration:none;
     color:white;
   }
+
+  .cardBox
+  {
+      padding: 3px 20px 20px 20px;
+  }
+  .cardBox1
+  {
+      padding: 3px 20px 20px 20px;
+      height: 500px;
+      overflow-x:hidden;
+      overflow-y:auto; 
+  }
+
+  .colorPink
+  {
+    background-color: #E44B80;
+  }
+
+  .left
+  {
+      text-align:left;
+  }
+  .right
+  {
+      text-align:right;
+  }
+
+  .card-panel
+  {
+      padding-bottom: 45px;
+  }
