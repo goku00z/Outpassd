@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 class RegisterApplication extends Component{
     render(){
         return(
+            <div className="container">
             <div className="row">
                 <div>
                     <div className="card-panel teal">
@@ -12,6 +13,7 @@ class RegisterApplication extends Component{
                         </span>
                     </div>
                 </div>
+            </div>
             </div>
         )
     }

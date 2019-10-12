@@ -6,8 +6,9 @@ const Login = () => {
         <div>
             <div className="container">
                 <div className="row">
-                    <Link to="/loginStudent"> Student </Link>
-                    <Link to="/"> Warden </Link>
+                    <div className="btn"><Link to="/loginStudent"> Student </Link></div>
+                    <div className="btn"><Link to="/"> Warden </Link></div>
+                    {/* <Link to="/"><div className="btn">Student</div></Link> */}
                 </div>
             </div>
         </div>
