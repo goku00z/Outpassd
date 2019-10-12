@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import {Link} from 'react-router-dom';
+import {connect} from "react-redux";
+import {getLogs} from "../actions/index";
 
 const style = {
     padding: 20,
@@ -7,6 +9,9 @@ const style = {
   }
 
 class RegisterApplication extends Component{
+    componentWillMount(){
+        this.props.getLogs(this.props.user.Enrollment);
+    }
     render(){
         return(
             <div className="container">
@@ -124,4 +129,8 @@ class RegisterApplication extends Component{
     }
 }
 
-export default RegisterApplication;
+const mapStateToProps = state => ({
+    user: state.user
+})
+
+export default connect(mapStateToProps, {getLogs})(RegisterApplication);
