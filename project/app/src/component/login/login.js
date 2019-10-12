@@ -22,7 +22,7 @@ const Login = () => {
                 <div className="row">
                     
                     <div className="btn" ><Link style={style} to="/loginStudent">Student</Link></div>
-                    <div className="btn" ><Link style={style} to="/">Warden</Link></div>
+                    <div className="btn" ><Link style={style} to="/loginWarden">Warden</Link></div>
                     {/* <Link to="/"><div className="btn">Student</div></Link> */}
                 </div>
             </div>
