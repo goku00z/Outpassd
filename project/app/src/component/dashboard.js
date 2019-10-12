@@ -4,12 +4,18 @@ import UserHistory from "./UserHistory";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import {sendLogs} from "../actions/index";
+import "./login/loginStudent.css";
 
 const style = {
     padding: 20,
     width: 300
   }
 
+  const style1 = 
+{
+    color:"black",
+    font: "Poppins",
+} 
 class Dashboard extends Component{
     constructor() {
         super();
@@ -58,11 +64,12 @@ class Dashboard extends Component{
                 <div className="left">{user.Enrollment}</div>
                 <div className="right">logout</div>
             </div>
+            <hr className="colorPink"></hr>
             <div className="row">
-                <div className="col s12 center"><Link to="/userLogs" className="btn links" >History</Link></div>
+                <div className="col s12 center btn white black-text"><Link style={style1} to="/userLogs">History</Link></div>
             </div>
-            <div className="row">
-                <h2 className="center">plan</h2>
+            <div className="row z-depth-2 cardBox">
+                <h2 className="center" style={style1}>plan</h2>
                 <form onSubmit={this.onSubmit}>
                     <label>Date of visit</label>
                     <input type="text" placeholder="Date" name="Date" onChange={this.onChange} value={this.state.Date} />
