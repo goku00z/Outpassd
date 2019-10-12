@@ -2,13 +2,23 @@ import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import UserHistory from "./UserHistory";
 
+const style = {
+    padding: 20,
+    width: 300
+  }
+
 class Dashboard extends Component{
     render(){
     return(
         <div className="container">
+            <div className="row center">
+                    <img src="/images/outpassdlogo-03.png" style={style}/>
+                    </div>
             <div className="row">
                 <div className="left">Muskan</div>
-                <div className="right">IEC2017045</div>
+                <br/>
+                <div className="left">IEC2017045</div>
+                <div className="right">logout</div>
             </div>
             <div className="row">
                 <div className="col s12 center"><Link to="/userLogs" className="btn links" >History</Link></div>
