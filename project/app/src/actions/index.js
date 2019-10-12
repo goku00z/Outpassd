@@ -50,12 +50,40 @@ export const sendLogs = (plan, history) => async dispatch => {
 
 export const getLogs = (user) => async dispatch => {
     console.log(user);
+    var array = [];
     todosRef.collection("Log").where("Enrollment", "==", user).get().then(res => {
         res.forEach(log => {
-            console.log(log.data());
+            array.push(log.data());
+        })
+        console.log(array);
+        dispatch({
+            type: "FETCH_LOG",
+            payload: array
         })
     })
 } 
+
+export const setUser = () => async dispatch => {
+    try{
+        const id = localStorage.getItem("userId");
+        if(id == null){
+            
+        }
+        else{
+            todosRef.collection("Users").where("uid", "==", id).get().then(res => {
+                res.forEach(user => {
+                    dispatch({
+                        type: "FETCH_USER",
+                        payload: user.data()
+                    });
+                })
+            })
+        }
+    }
+    catch(err){
+        localStorage.removeItem("userId");
+    }
+};
 
 export const loginStudent = (user, history) => async dispatch => {
     console.log(typeof(user.email));
@@ -67,10 +95,10 @@ export const loginStudent = (user, history) => async dispatch => {
     // })
     firebase.auth().signInWithEmailAndPassword(user.email,user.password).then(function(res){
         if(res){
+            localStorage.setItem("userId", res.user.uid);
             todosRef.collection("Users").where("uid", "==", res.user.uid).get().then(res => {
                 res.forEach(user => {
-                    // console.log(user.id);
-                    // console.log(user.data());
+                    
                     dispatch({
                         type: "FETCH_USER",
                         payload: user.data()

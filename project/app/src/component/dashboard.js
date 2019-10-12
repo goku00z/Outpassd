@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import UserHistory from "./UserHistory";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import {sendLogs} from "../actions/index";
+import {sendLogs, setUser} from "../actions/index";
 import "./login/loginStudent.css";
 
 const style = {
@@ -28,6 +28,10 @@ class Dashboard extends Component{
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    componentDidMount(){
+        this.props.setUser();
     }
 
     onChange(e) {
@@ -93,4 +97,4 @@ const mapStateToProps = state => ({
     user: state.user
 })
 
-export default connect(mapStateToProps, {sendLogs})(withRouter(Dashboard));
+export default connect(mapStateToProps, {sendLogs, setUser})(withRouter(Dashboard));

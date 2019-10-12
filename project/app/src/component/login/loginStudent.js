@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {Link} from 'react-router-dom';
 import "./loginStudent.css";
 import {connect} from "react-redux";
-import {loginStudent} from "../../actions/index";
+import {loginStudent, setUser} from "../../actions/index";
 import {withRouter} from "react-router-dom";
 
 const style = {
@@ -20,6 +20,10 @@ class LoginStudent extends Component{
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    componentDidMount(){
+        this.props.setUser();
     }
 
     onChange(e) {
@@ -64,4 +68,4 @@ class LoginStudent extends Component{
     }
 }
 
-export default connect(null, {loginStudent})(withRouter(LoginStudent));
+export default connect(null, {loginStudent, setUser})(withRouter(LoginStudent));
