@@ -2,6 +2,10 @@ import React, {Component} from "react";
 import {Link} from 'react-router-dom';
 import "./loginStudent.css";
 
+const style = {
+    padding: 20,
+    width: 300
+  }
 
 class LoginStudent extends Component{
     render(){
@@ -9,7 +13,7 @@ class LoginStudent extends Component{
             <div>
                 <div className="container valign">
                     <div className="row center">
-                        Outpassed
+                    <img src="/images/outpassdlogo-03.png" style={style}/>
                     </div>
                     <div className="row">
                         <h2 className="center" id="login">login</h2>
