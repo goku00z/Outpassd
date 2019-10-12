@@ -21,7 +21,7 @@ class RegisterApplication extends Component{
             </div>)
     
         else if(logs.StatusByWarden.localeCompare("Pending") == 0)
-            return (<div className="yellow-text right"><b>Pending</b>
+            return (<div className="yellow-text text-darken-2 right"><b>Pending</b>
             </div>)
     
         else if(logs.StatusByParent.localeCompare("Approved") == 0)
@@ -29,7 +29,7 @@ class RegisterApplication extends Component{
             </div>)
     
         else if(logs.StatusByParent.localeCompare("Pending") == 0)
-            return (<div className="yellow-text right"><b>Pending</b>
+            return (<div className="yellow-text text-darken-2 right"><b>Pending</b>
             </div>)
     
         else
